@@ -1,0 +1,166 @@
+public class RecursionProblems {
+
+    // Task 1: Find Minimum in Array - Complexity: linear - O(n)
+    public static int task1(int[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array must not be null or empty");
+        }
+        return findMinimum(array, 0, array[0]);
+    }
+    
+    private static int findMinimum(int[] array, int index, int min) {
+        if (index == array.length) {
+            return min;
+        }
+        if (array[index] < min) {
+            min = array[index];
+        }
+        return findMinimum(array, index + 1, min);
+    }
+
+    // Task 2: Calculate Average of Array Elements - Complexity: linear - O(n)
+    public static double task2(int[] array) {
+        return calculateAverage(array, 0, 0);
+    }
+    
+    private static double calculateAverage(int[] array, int index, double sum) {
+        if (index == array.length) {
+            return sum / array.length;
+        }
+        return calculateAverage(array, index + 1, sum + array[index]);
+    }
+
+    // Task 3: Check if a Number is Prime - Complexity: O(n) (but linear on average)
+    public static boolean task3(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        return isPrime(n, 2);
+    }
+    
+    private static boolean isPrime(int n, int divisor) {
+        if (n == divisor) {
+            return true;
+        }
+        if (n % divisor == 0) {
+            return false;
+        }
+        return isPrime(n, divisor + 1);
+    }
+
+    // Task 4: Find Factorial - Complexity: linear - O(n)
+    public static int task4(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Number must be non-negative.");
+        }
+        return factorial(n);
+    }
+    
+    private static int factorial(int n) {
+        if (n <= 1) {
+            return 1;
+        }
+        return n * factorial(n - 1);
+    }
+
+    // Task 5: Find nth Fibonacci Number - Complexity: exponential - O(2^n)
+    public static int task5(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Index cannot be negative.");
+        }
+        return fibonacci(n);
+    }
+    
+    private static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    // Task 6: Power Function - Complexity: logarithmic - O(log n)
+    public static int task6(int a, int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Exponent must be non-negative.");
+        }
+        return power(a, n);
+    }
+    
+    private static int power(int a, int n) {
+        if (n == 0) {
+            return 1;
+        }
+        int halfPower = power(a, n / 2);
+        if (n % 2 == 0) {
+            return halfPower * halfPower;
+        } else {
+            return a * halfPower * halfPower;
+        }
+    }
+
+    // Task 7: Print All Permutations of a String - Complexity: O(n*n!)
+    public static void task7(String str) {
+        permute(str, 0, str.length() - 1);
+    }
+    
+    private static void permute(String str, int l, int r) {
+        if (l == r) {
+            System.out.println(str);
+        } else {
+            for (int i = l; i <= r; i++) {
+                str = swap(str, l, i);
+                permute(str, l + 1, r);
+                str = swap(str, l, i);
+            }
+        }
+    }
+    
+    private static String swap(String a, int i, int j) {
+        char temp;
+        char[] charArray = a.toCharArray();
+        temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
+
+    // Task 8: Check if a String Contains Only Digits - Complexity: linear - O(n)
+    public static boolean task8(String str) {
+        return isAllDigits(str, 0);
+    }
+    
+    private static boolean isAllDigits(String str, int index) {
+        if (index == str.length()) {
+            return true;
+        }
+        return Character.isDigit(str.charAt(index)) && isAllDigits(str, index + 1);
+    }
+
+    // // Task 9: Binomial Coefficient (n Choose k) - Complexity: exponential - O(2^n)
+    public static int task9(int n, int k) {
+        return binomialCoefficient(n, k);
+    }
+    
+    private static int binomialCoefficient(int n, int k) {
+        if (k == 0 || k == n) {
+            return 1;
+        }
+        return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
+    }
+
+    // Task 10: Find GCD Using Euclidean Algorithm - Complexity: logarithmic - O(log n)
+    public static int task10(int a, int b) {
+        return gcd(a, b);
+    }
+    
+    private static int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+    public static void main(String[] args) {
+    
+    }
+}
