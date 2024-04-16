@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class RecursionProblems {
 
     // Task 1: Find Minimum in Array - Complexity: linear - O(n)
@@ -160,7 +162,108 @@ public class RecursionProblems {
         return gcd(b, a % b);
     }
 
-    public static void main(String[] args) {
-    
-    }
+   public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int choice;
+
+    do {
+        System.out.println("Choose a task to execute:");
+        System.out.println("1. Find Minimum in Array");
+        System.out.println("2. Calculate Average of Array Elements");
+        System.out.println("3. Check if a Number is Prime");
+        System.out.println("4. Find Factorial");
+        System.out.println("5. Find nth Fibonacci Number");
+        System.out.println("6. Power Function");
+        System.out.println("7. Print All Permutations of a String");
+        System.out.println("8. Check if a String Contains Only Digits");
+        System.out.println("9. Binomial Coefficient (n Choose k)");
+        System.out.println("10. Find GCD Using Euclidean Algorithm");
+        System.out.println("0. Exit");
+
+        choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the array:");
+                scanner.nextLine(); 
+                String[] elements = scanner.nextLine().split(" ");
+                int[] arr = new int[elements.length];
+                for (int i = 0; i < elements.length; i++) {
+                    arr[i] = Integer.parseInt(elements[i]);
+                }
+                int min = task1(arr);
+                System.out.println("Minimum in the array: " + min);
+                break;
+            case 2:
+                System.out.println("Enter the array:");
+                scanner.nextLine(); 
+                String[] elements2 = scanner.nextLine().split(" ");
+                int[] arr2 = new int[elements2.length];
+                for (int i = 0; i < elements2.length; i++) {
+                    arr2[i] = Integer.parseInt(elements2[i]);
+                }
+                double avg = task2(arr2);
+                System.out.println("Average of the array: " + avg);
+                break;
+            case 3:
+                System.out.println("Enter a number:");
+                int num = scanner.nextInt();
+                boolean isPrime = task3(num);
+                System.out.println(isPrime);
+                break;
+            case 4:
+                System.out.println("Enter a number:");
+                int factorialNum = scanner.nextInt();
+                int factorialResult = task4(factorialNum);
+                System.out.println(factorialResult);
+                break;
+            case 5:
+                System.out.println("Enter the index:");
+                int fibonacciNum = scanner.nextInt();
+                int fibonacciResult = task5(fibonacciNum);
+                System.out.println("Fibonacci number at index " + fibonacciNum + " is: " + fibonacciResult);
+                break;
+            case 6:
+                System.out.println("Enter the base:");
+                int base = scanner.nextInt();
+                System.out.println("Enter the exponent:");
+                int exponent = scanner.nextInt();
+                int powerResult = task6(base, exponent);
+                System.out.println(powerResult);
+                break;
+            case 7:
+                System.out.println("Enter a string");
+                String permString = scanner.next();
+                task7(permString);
+                break;
+            case 8:
+                System.out.println("Enter a string:");
+                String digitString = scanner.next();
+                boolean containsOnlyDigits = task8(digitString);
+                System.out.println(containsOnlyDigits);
+                break;
+            case 9:
+                System.out.println("Enter two numbers:");
+                int n = scanner.nextInt();
+                int k = scanner.nextInt();
+                int binomialCoeff = task9(n, k);
+                System.out.println(binomialCoeff);
+                break;
+            case 10:
+                System.out.println("Enter two numbers:");
+                int num1 = scanner.nextInt();
+                int num2 = scanner.nextInt();
+                int gcdResult = task10(num1, num2);
+                System.out.println(gcdResult);
+                break;
+            case 0:
+                System.out.println("GGWP");
+                break;
+            default:
+                System.out.println("Invalid choice. Please enter a number between 0 and 10.");
+        }
+    } while (choice != 0);
+
+    scanner.close();
+}
 }
